@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'FrontTestV4';
+  title: string = 'HeroDigitalAssesment';
+  arrayTester: any[] = [1,2,3];
+
+
 }

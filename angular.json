@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FrontTestV4": {
+    "HeroDigitalAssesment": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/FrontTestV4",
+            "outputPath": "dist/HeroDigitalAssesment",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -70,12 +71,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 3320
+          },
           "configurations": {
             "production": {
-              "browserTarget": "FrontTestV4:build:production"
+              "browserTarget": "HeroDigitalAssesment:build:production"
             },
             "development": {
-              "browserTarget": "FrontTestV4:build:development"
+              "browserTarget": "HeroDigitalAssesment:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FrontTestV4:build"
+            "browserTarget": "HeroDigitalAssesment:build"
           }
         },
         "test": {
@@ -99,6 +103,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -107,5 +112,5 @@
       }
     }
   },
-  "defaultProject": "FrontTestV4"
+  "defaultProject": "HeroDigitalAssesment"
 }
