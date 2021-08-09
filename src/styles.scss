@@ -1,4 +1,129 @@
-/* You can add global styles to this file, and also import other style files */
+// imported modules
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@import './styles-variables.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif; 
+}
+
+ng-select {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 42px;
+  width: fit-content;
+  min-width: 300px;
+
+  input {
+    padding: unset;
+    height: unset;
+  }
+
+  &.ng-select.ng-select-focused {
+    border: 1px solid $border-selected-color !important;    
+  }
+  &.ng-select.ng-select-focused {
+    >.ng-select-container {
+      border: 1px solid $border-selected-color !important;
+    }
+  }
+
+  &.ng-select {
+    &.ng-select-single {
+      .ng-select-container {
+        border: 2px solid $border-color;
+        border-radius: 0;
+        height: 40px;
+        .ng-value-container {
+          padding-left: 16px;
+          .ng-input {
+            top: 9px;
+            padding-left: 16px;
+          }
+          .ng-value {
+            color: black;
+          }
+        }
+      }
+    }
+    &.ng-select-multiple {
+      .ng-select-container {
+        line-height: 32px;
+      }
+    }
+
+    &.ng-select-opened {
+      &.ng-select-bottom {
+        .ng-select-container {
+          border-radius: 0;
+        }
+      }
+    }
+
+    &.error:not(.ng-select-opened) .ng-select-container {
+      background: #FF94A6;
+    }
+  }
+
+  .ng-dropdown-panel {
+    z-index: 200;
+    border: 2px solid $border-selected-color;
+
+    &.ng-select-bottom {
+      border-radius: 0;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .ng-dropdown-panel-items {
+      .ng-option {
+        height: 32px;
+        padding: 0 16px;
+        border-top: 1px solid $border-selected-color;
+
+        &.ng-option-selected {
+          .ng-option-label {
+            font-weight: 400;
+          }
+        }
+        &.ng-option-marked {
+          background: $border-color;         
+        }
+        &:last-child {
+          border-radius: 0;
+        }
+
+        span {
+          line-height: 32px;
+        }
+      }
+    }
+  }
+
+  // NG-SELECT SCROLLBAR STYLES
+  ::-webkit-scrollbar {
+    height: 20px;
+    width: 20px;
+    background-color: #E3E3E3;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 40px;
+    border: 6px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    background-color: #3F8794;
+
+    box-shadow: inset -1px -1px 0px rgba(255, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 255, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+  }
+  ::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+}

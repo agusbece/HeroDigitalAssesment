@@ -3,30 +3,32 @@ import { CoreActionTypes } from './core.actions'
 import { Task } from './core.model';
 import * as TaskActions from './core.actions'
 
-// 2 - Estado inicial
 const initialState: Task = {
-  name: 'First Task',
-  state: 'Pending',
-  isLoading: false
+  subscriptionSucceed: false,
+  isLoading: false,
+  error: null  
 }
 
-// 3 - Switch con las funciones puras
 export function taskReducer(state: Task = initialState, action: TaskActions.Actions) {
   switch (action.type) {
     case CoreActionTypes.ADD_SUBSCRIPTION_REQUEST:
       return  {
         ...state,
-        state: action.payload
+        error: null,
+        isLoading: true
       };
     case CoreActionTypes.ADD_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
-        state: action.payload
+        state: action.payload,
+        subscriptionSucceed: true,
+        isLoading: false
       };
     case CoreActionTypes.ADD_SUBSCRIPTION_FAIL:
       return  {
         ...state,
-        state: action.payload
+        error: action.payload,
+        isLoading: false
       };
     default:
       return state;

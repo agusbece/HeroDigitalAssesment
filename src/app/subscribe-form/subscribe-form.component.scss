@@ -1,5 +1,88 @@
+@import '../../styles-variables.scss';
+// SPINNER styles
+.spinner-container {  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: #00000043;
+  z-index: 100;
+
+  .loader,
+  .loader:before,
+  .loader:after {
+    border-radius: 50%;
+  }
+  .loader {
+    color: #ffffff;
+    font-size: 11px;
+    text-indent: -99999em;
+    margin: 55px auto;
+    position: relative;
+    width: 10em;
+    height: 10em;
+    box-shadow: inset 0 0 0 1em;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .loader:before,
+  .loader:after {
+    position: absolute;
+    content: '';
+  }
+  .loader:before {
+    width: 5.2em;
+    height: 10.2em;
+    background: #0dc5c1;
+    border-radius: 10.2em 0 0 10.2em;
+    top: -0.1em;
+    left: -0.1em;
+    -webkit-transform-origin: 5.1em 5.1em;
+    transform-origin: 5.1em 5.1em;
+    -webkit-animation: load2 2s infinite ease 1.5s;
+    animation: load2 2s infinite ease 1.5s;
+  }
+  .loader:after {
+    width: 5.2em;
+    height: 10.2em;
+    background: #0dc5c1;
+    border-radius: 0 10.2em 10.2em 0;
+    top: -0.1em;
+    left: 4.9em;
+    -webkit-transform-origin: 0.1em 5.1em;
+    transform-origin: 0.1em 5.1em;
+    -webkit-animation: load2 2s infinite ease;
+    animation: load2 2s infinite ease;
+  }
+  @-webkit-keyframes load2 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes load2 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+// END SPINNER styles
+
 .component-container {
-  padding: 10px;  
+  background: url(../../assets/texture-cropped.png) repeat;
+  // background: url(texture-cropped.png) repeat;
+  padding: 10px;
 
   form {
     display: flex;
@@ -9,42 +92,123 @@
       color: #EE4266;
       width: 100%;
     }
-    .error-test {
+
+    .input-container input.error {
       background-color: #FF94A6;
+      border-color: #EE4266;
+    }    
+  }
+
+  .checkboxes-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .input-container {
+    margin: 10px;
+    width: calc(50% - 20px);
+
+    @media (max-width: 768px) {
+      width: calc(100% - 20px);
+    }
+
+    &.select {
       width: 100%;
     }
 
-    .input-container {
-      width: calc(50% - 20px);
-      margin: 10px;      
+    &.checkbox {
+      display: flex;
+    }
 
-      &.select {
+    label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 14px;
+
+      input {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+
+    input {
+      border: 2px solid $border-color;
+      height: 40px;
+      width: fit-content;
+
+      &.text {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 0 15px;
+        box-sizing: border-box;
         width: 100%;
       }
 
-      input {
-        border: 2px solid #D0E8E6;
-        width: fit-content;
-
-        &.text {
-          width: 100%;
-        }
-
+      &:focus-visible {
+        outline: $border-selected-color;
       }
 
-      input[type="checkbox"] {
-        background-color: red;
-        color: blue;
-        border-color: green;
-        height: 20px;
-        width: 20px;
-        -webkit-appearance: none;
-      }
-      
-      select {
-        border: 2px solid #D0E8E6;
-        background-color: #803093;
+      &:focus {
+        border: 2px solid $border-selected-color;
       }
     }
+
+    input[type="checkbox"] {
+      height: 20px;
+      width: 20px;
+    }
+    
+    select {
+      border: 2px solid #D0E8E6;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 15px;
+      margin: 10px 0;
+    }
+  }
+
+  .buttons-container {
+    margin: 50px 0;
+
+    button {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 25px;
+      box-shadow: rgb(0 0 0 / 70%) 0px 3px 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-right: 20px;
+      height: 40px;
+      width: 150px;
+  
+      &.primary {
+        background-color: #803093; 
+        color: white;
+        
+        &:focus {
+          border: 1px solid white;
+        }
+      }
+
+      &:focus {
+        border: 1px solid #803093;
+      }
+
+      &:active {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .violet-background{
+    color: white;
+    border: 2px solid #D0E8E6;
+    background-color: #803093;
+
   }
 }

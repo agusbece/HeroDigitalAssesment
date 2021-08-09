@@ -1,45 +1,92 @@
-<div class="component-container">
+<!-- SPINNER ICON -->
+<div class="spinner-container" *ngIf="isLoading">
+  <div class="loader">Loading...</div>
+</div>
+<!-- START COMPONENT -->
+<div class="component-container" *ngIf="!subscriptionSucceed">               
   <h2>Sign up for email updates</h2>
   <p class="subheadline">*Indicates Required Field</p>
-  <form>
-    <p class="error-message">Need assistance?</p>
-    <p class="error-test">backogrund error test</p>
-    <!-- FIRST NAME -->
+  <form  [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+    <p class="error-message">      
+      <ng-container *ngIf="(firstName.invalid && firstName.touched)">
+        First name is required.
+      </ng-container>
+      <ng-container *ngIf="(lastName.invalid && lastName.touched)">
+        Valid last name is required.
+      </ng-container>
+      <ng-container *ngIf="(email.invalid && email.touched)">
+        Valid email is required.
+      </ng-container>
+      <ng-container *ngIf="(euResident.invalid && euResident.touched)">
+        Please select if you are EU resident.
+      </ng-container>
+      <ng-container *ngIf="(!advancesCheckbox && !alertsCheckbox && !otherCheckbox)">
+        Please check one topic to subscribe.
+      </ng-container>
+    </p>
+    <!-- FIRST NAME INPUT -->
     <div class="input-container">
-      <p>FIRST NAME</p>
-      <input class="text">
+      <p>FIRST NAME*</p>
+      <input class="text" formControlName="firstName"
+      [ngClass]="{'error': (firstName.invalid && firstName.touched)}">
     </div>
-    <!-- LAST NAME -->
+    <!-- LAST NAME INPUT -->
     <div class="input-container">
-      <p>LAST NAME</p>
-      <input class="text">
+      <p>LAST NAME*</p>
+      <input class="text" formControlName="lastName"
+        [ngClass]="{'error': (lastName.invalid && lastName.touched)}">
     </div>
-    <!-- EMAIL NAME -->
+    <!-- EMAIL NAME INPUT -->
     <div class="input-container">
-      <p>EMAIL ADDRESS</p>
-      <input class="text">
+      <p>EMAIL ADDRESS*</p>
+      <input class="text" formControlName="email"
+        [ngClass]="{'error': (email.invalid && email.touched)}">
     </div>
-    <!-- ORGANIZATION NAME -->
+    <!-- ORGANIZATION NAME INPUT -->
     <div class="input-container">
       <p>ORGANIZATION</p>
-      <input class="text">
+      <input class="text" formControlName="organization">
     </div>
-    <!-- EU RESIDENT -->
+    <!-- EU RESIDENT INPUT -->
     <div class="input-container select">
-      <select>     
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
-    </div>
-    <!-- SUBSCRIPTION TOPICS -->
-    <div class="input-container">
-      <label><input type="checkbox" id="cbox1" value="advances">ADVANCES</label><br>
-    </div>
-    <div class="input-container">
-      <label><input type="checkbox" id="cbox2" value="advances">ALERTS</label><br>
-    </div>
-    <div class="input-container">
-      <label><input type="checkbox" id="cbox3" value="advances">OTHER COMMUNICATIONS</label><br>
+      <p>EU RESIDENT*</p>
+      <ng-select 
+        bindLabel="label" 
+        placeholder="- SELECT ONE -"
+        [items]="selectOptions"
+        [clearable]="false"
+        [searchable]="false"
+        formControlName="euResident"
+        [ngClass]="{'error': (euResident.invalid && euResident.touched)}"
+        >
+      </ng-select>
     </div>
   </form>
+  <!-- SUBSCRIPTIONS TOPICS CHECKBOXES -->
+  <div class="checkboxes-container">
+    <div class="input-container checkbox">
+      <label><input type="checkbox" id="cbox1" 
+        [(ngModel)]="advancesCheckbox"
+        value="advances">ADVANCES</label><br>
+    </div>
+    <div class="input-container checkbox">
+      <label><input type="checkbox" id="cbox2" 
+        [(ngModel)]="alertsCheckbox"
+        value="advances">ALERTS</label><br>
+    </div>
+    <div class="input-container checkbox">
+      <label><input type="checkbox" id="cbox3"
+        [(ngModel)]="otherCheckbox" value="advances">OTHER COMMUNICATIONS</label><br>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button class="primary" (click)="onSubmit()">
+      SUBMIT
+    </button>
+    <button (click)="resetForms()">RESET</button>
+  </div>
+</div>
+<div class="component-container" *ngIf="subscriptionSucceed">
+  <h1>Excellent! You have subscribed to our mailings!</h1>
 </div>

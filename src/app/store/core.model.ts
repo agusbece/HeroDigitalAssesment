@@ -1,6 +1,6 @@
 
 export interface Task {
-  name: string;
-  state: string;
+  subscriptionSucceed: boolean;
   isLoading: boolean;
+  error: any;
 }

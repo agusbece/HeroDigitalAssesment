@@ -8,7 +8,7 @@ export enum CoreActionTypes {
 
 export class ActionAddTaskRequest implements Action {
   readonly type = CoreActionTypes.ADD_SUBSCRIPTION_REQUEST
-  constructor(public payload: { email: string }) { }
+  constructor(public payload: any) { }
 }
 export class ActionAddTaskSuccess implements Action {
   readonly type = CoreActionTypes.ADD_SUBSCRIPTION_SUCCESS

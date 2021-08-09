@@ -14,14 +14,12 @@ export class CoreService {
 
   constructor(private httpClient: HttpClient) {}
 
-  subscribe(user: string = 'none'): Observable<any> {
+  subscribe(formData: any): Observable<any> {
     return this.httpClient.post<any>(
       // SERVER_CORE + '/users/subscribe',
       SERVER_CORE,
       // body
-      {
-        "pep": `here is the thing ${user}`
-      },
+      formData,
       // optionals
       {
         headers: this.httpOptions
