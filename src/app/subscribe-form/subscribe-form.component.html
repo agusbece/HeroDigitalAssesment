@@ -6,7 +6,9 @@
 <div class="component-container" *ngIf="!subscriptionSucceed">               
   <h2>Sign up for email updates</h2>
   <p class="subheadline">*Indicates Required Field</p>
+  <!-- FORM INPUT -->
   <form  [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+    <!-- ERROR MESSAGES ON INPUT -->
     <p class="error-message">      
       <ng-container *ngIf="(firstName.invalid && firstName.touched)">
         First name is required.
@@ -79,7 +81,7 @@
         [(ngModel)]="otherCheckbox" value="advances">OTHER COMMUNICATIONS</label><br>
     </div>
   </div>
-
+  <!-- BUTTONS -->
   <div class="buttons-container">
     <button class="primary" (click)="onSubmit()">
       SUBMIT

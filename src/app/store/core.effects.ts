@@ -17,16 +17,16 @@ export class CoreEffects {
   ) {}
 
   @Effect()
-  loginRequestEffect$: Observable<Action> = this.actions$.pipe(
+  subscribeRequestEffect$: Observable<Action> = this.actions$.pipe(
     //    retryWithBackoff(1000),
     ofType<CoreActions.Actions>(CoreActions.CoreActionTypes.ADD_SUBSCRIPTION_REQUEST),
     switchMap(action =>
       this.service
         .subscribe(action.payload)
         .pipe(
-          map(user => new CoreActions.ActionAddTaskSuccess({})),
+          map(dataFetched => new CoreActions.ActionSubscribeSuccess({})),
           catchError(error => 
-            observableOf(new CoreActions.ActionAddTaskFail({}))
+            observableOf(new CoreActions.ActionSubscribeFail({}))
           )
         )
     )

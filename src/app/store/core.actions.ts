@@ -6,22 +6,21 @@ export enum CoreActionTypes {
   ADD_SUBSCRIPTION_FAIL = '[CORE] Subscription failed'
 }
 
-export class ActionAddTaskRequest implements Action {
+export class ActionSubscribeRequest implements Action {
   readonly type = CoreActionTypes.ADD_SUBSCRIPTION_REQUEST
   constructor(public payload: any) { }
 }
-export class ActionAddTaskSuccess implements Action {
+export class ActionSubscribeSuccess implements Action {
   readonly type = CoreActionTypes.ADD_SUBSCRIPTION_SUCCESS
   constructor(public payload: any) { }
 }
-export class ActionAddTaskFail implements Action {
+export class ActionSubscribeFail implements Action {
   readonly type = CoreActionTypes.ADD_SUBSCRIPTION_FAIL
   constructor(public payload: any) { }
 }
 
-// 4 - Exportación de la acción
 export type Actions = 
-  | ActionAddTaskRequest
-  | ActionAddTaskSuccess
-  | ActionAddTaskFail
+  | ActionSubscribeRequest
+  | ActionSubscribeSuccess
+  | ActionSubscribeFail
   ;

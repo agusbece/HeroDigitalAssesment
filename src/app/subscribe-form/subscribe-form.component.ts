@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AppState, selectCoreState } from '../app.state';
-import { ActionAddTaskRequest } from '../store/core.actions';
+import { ActionSubscribeRequest } from '../store/core.actions';
 
 @Component({
   selector: 'app-subscribe-form',
@@ -25,7 +25,7 @@ export class SubscribeFormComponent implements OnInit, OnDestroy {
     euResident: new FormControl('', Validators.required)
   });
   checkboxGroup: FormGroup;
-
+  // Reactive input functions
   get firstName() {
     return this.subscriptionForm.get('firstName');
   }
@@ -55,10 +55,10 @@ export class SubscribeFormComponent implements OnInit, OnDestroy {
   constructor(private coreStore: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.subscribeToStoreAuth();
+    this.subscribeToStoreCore();
   }
 
-  subscribeToStoreAuth() {
+  subscribeToStoreCore() {
     this.coreStore.pipe(select(selectCoreState), 
       takeUntil(this.unsubscribe$)).subscribe(stateInfo => {
         this.isLoading = stateInfo.isLoading;
@@ -100,7 +100,7 @@ export class SubscribeFormComponent implements OnInit, OnDestroy {
         + (this.otherCheckbox) ? "other comunications" : ""
         + "]";
       uploadData.append('topicsToSubscribe', topicsToSubscribe);
-      this.coreStore.dispatch(new ActionAddTaskRequest(uploadData))
+      this.coreStore.dispatch(new ActionSubscribeRequest(uploadData))
     }
   }
 
